@@ -1,0 +1,1 @@
+@Objects = new Meteor.Collection('objects')

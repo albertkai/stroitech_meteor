@@ -108,7 +108,7 @@
     right: auto;
 }
 .timeline-badge > a {
-    color: #C5C7C5 !important;
+    color: black !important;
 }
 .timeline-badge a:hover {
     color: #000 !important;

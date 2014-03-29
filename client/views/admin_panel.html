@@ -1,0 +1,28 @@
+<template name="adminPanel">
+    <div class="admin-panel">
+
+        <div id="toggle-admin-panel">+</div>
+        <div class="header">
+
+            <div class="user-pic"></div>
+
+            <h3>Альберт</h3>
+            <h2>Кайгородов</h2>
+
+            <a id="open-dashboard" href="{{pathFor 'dashboard'}}">Открыть дэшборд</a>
+            <hr/>
+        </div>
+        <div class="body">
+            <h4>Режим правки</h4>
+            <input id="edit-mode" type="checkbox"/> Режим правки
+            <hr/>
+            <a class="toggle-collection-modal" data-collection="Events">События</a>
+            <a class="toggle-collection-modal" data-collection="Courses">Курсы</a>
+            <a cass="togge-collection-modal" data-collection="Trainers">Тренеры</a>
+            <hr/>
+            <a class="toggle-page" data-page="Course">Создать курс</a>
+        </div>
+
+
+    </div>
+</template>

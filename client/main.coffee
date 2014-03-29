@@ -2,6 +2,38 @@ Meteor.startup ->
   console.log 'startup'
   Session.setDefault('mapLoaded', false)
 
+Template.main.helpers {
+
+  about: ->
+
+    Pages.findOne {name: 'about'}
+
+  services: ->
+
+    Pages.findOne {name: 'services'}
+
+  objects: ->
+
+    Pages.findOne {name: 'objects'}
+
+  objectList: ->
+
+    Objects.find({}, {fields: {'name':1, 'desc': 1, '_id': 1, 'square': '1', 'status': 1, 'thumb': 1}})
+
+  price: ->
+
+    Pages.findOne {name: 'price'}
+
+  contacts: ->
+
+    Pages.findOne {name: 'contacts'}
+
+  footer: ->
+
+    Pages.findOne {name: 'footer'}
+
+}
+
 Template.main.rendered = ()->
 
   console.log 'rendered'
@@ -43,9 +75,16 @@ Template.main.rendered = ()->
       $('#top').find('nav').removeClass('_fixed')
   , {offset: 50}
 
-  if Session.get('mapLoaded') is false
 
-    console.log 'yo'
+  $('.pages').waypoint (dir)->
+
+    if dir is 'down'
+
+      animatePage($(this), 400)
+
+  , {offset: 100}
+
+  if Session.get('mapLoaded') is false
 
     script = document.createElement("script")
     script.type = "text/javascript"
@@ -54,21 +93,118 @@ Template.main.rendered = ()->
     Session.set('mapLoaded', true)
 
 
-
-
-
-
 Template.main.events {
   'click #top nav ul li': (e)->
     e.preventDefault()
     target = $(e.target).closest('li').data('target')
     $.scrollTo $('#' + target), {offset: -50, duration: 500}
 
+  'mouseover [contenteditable="true"]': (e)->
+    target = $(e.target).closest('[contenteditable="true"]')
+    target.addClass('_editor-hover')
+    Meteor.setTimeout ->
+      target.removeClass('_editor-hover')
+    , 600
+
+  'click [contenteditable="true"]': (e)->
+    e.stopPropagation()
+
+  'focus [contenteditable="true"]': (e)->
+    $('.editor').addClass('_opened')
+    $('#editor-overlay').addClass('_active')
+    $(e.target).addClass('_editing')
+    $('.editor').find('button').removeClass('_active')
+    editor._trackChanges.currentValue = $(e.target).closest('[contenteditable="true"]').html()
+
+  'click #services .item .thumbnail': (e)->
+    if $(e.target).closest('.thumbnail').parent().attr('contenteditable') isnt 'true'
+      target = $(e.target).closest('.thumbnail').data('target')
+      $('.r-modal').addClass('_opened')
+
+  'click #top-nav .for-devices button': ->
+    $('#top-nav').find('ul').toggleClass('_expanded')
+
+  'click #top-nav ul li': ->
+    $('#top-nav').find('ul').removeClass('_expanded')
+
   'click #objects .item>.thumbnail': (e)->
     expander.open($(e.target).closest('.item'))
 
   'click #objects .item .expandable .close-it': ()->
     expander.flatten()
+
+}
+
+Template.adminPanel.events {
+  'click #edit-mode': (e)->
+    if $(e.target).is(':checked')
+      Session.set('admin.editMode', true)
+    else
+      Session.set('admin.editMode', false)
+}
+
+Template.modal.events {
+  'click .r-modal .ovrl, click .r-modal .close-me': (e)->
+    $(e.target).closest('.r-modal').removeClass '_opened'
+}
+
+Template.editor.events {
+
+  'click button': (e)->
+    $(e.target).closest('button').toggleClass('_active')
+
+  'click #b-bold': ->
+    editor.bold()
+
+  'click #b-italic': ->
+    editor.italic()
+
+  'click #b-sub': ->
+    editor.sub()
+
+  'click #b-sup': ->
+    editor.sup()
+
+  'click #b-ul': ->
+    editor.ul()
+
+  'click #b-ol': ->
+    editor.ol()
+
+  'click #b-h1': ->
+    editor.h1()
+
+  'click #b-h2': ->
+    editor.h2()
+
+  'click #b-h3': ->
+    editor.h3()
+
+  'click #b-h4': ->
+    editor.h4()
+
+  'click #b-h5': ->
+    editor.h5()
+
+  'click #b-h6': ->
+    editor.h6()
+
+  'click #b-span': ->
+    editor.span()
+
+  'click #b-link': ->
+    editor.link()
+
+  'click #editor-overlay, click .editor button#save': (e)->
+
+    editingBlock = $('[contenteditable]._editing')
+    console.log editingBlock
+    $('.editor').removeClass('_opened')
+    $('#editor-overlay').removeClass('_opened')
+    editingBlock.removeClass('_editing')
+    if editor._trackChanges.check(editingBlock)
+      editor.save(editingBlock)
+
 }
 
 
@@ -126,25 +262,7 @@ Template.main.events {
   marker = new google.maps.Marker({
     position: myLatlng,
     map: map
-  });
-
-
-#  @map.addStyle({
-#    styledMapName:"Styled Map",
-#    styles:styles,
-#    mapTypeId:"map_style"
-#  })
-#
-#  @map.setStyle("map_style")
-#
-#
-#  @map.drawOverlay({
-#    lat:59.9386505,
-#    lng:30.3730258,
-#    content:'<div class="overlay"></div>',
-#    verticalAlign:'top'
-#  })
-
+  })
 
 
 
@@ -182,10 +300,7 @@ expander = {
       @expand(thumb)
 
 
-
   expand: (thumb)->
-
-
 
     $exp = thumb.find('.expandable')
     scrollPosition = $exp.offset().top - 50
@@ -230,3 +345,119 @@ expander = {
 
 
 }
+
+
+animatePage = (elem, dur)->
+
+  $allElems = elem.find('[data-animate]')
+  $allElems.each ->
+    speed = $(this).data('animate')
+    $elem = $(this)
+    setTimeout ->
+      $elem.addClass('_animated')
+    , dur * parseFloat(speed, 10)
+
+
+@editor = {
+
+  bold: ()->
+
+    document.execCommand('bold', null, null)
+
+  italic: ->
+
+    document.execCommand('italic', null, null)
+
+  sub: ->
+
+    document.execCommand('subscript', null, null)
+
+  sup: ->
+
+    document.execCommand('superscript', null, null)
+
+  ul: ->
+
+    document.execCommand('insertUnorderedList', null, null)
+
+  ol: ->
+
+    document.execCommand('insertOrderedList', null, null)
+
+  h1: ->
+
+    document.execCommand('formatBlock', null, '<h1>')
+
+  h2: ->
+
+    document.execCommand('formatBlock', null, '<h2>')
+
+  h3: ->
+
+    document.execCommand('formatBlock', null, '<h3>')
+
+
+  h4: ->
+
+    document.execCommand('formatBlock', null, '<h4>')
+
+
+  h5: ->
+
+    document.execCommand('formatBlock', null, '<h5>')
+
+
+  h6: ->
+
+    document.execCommand('formatBlock', null, '<h6>')
+
+
+  span: ->
+
+    document.execCommand('formatBlock', null, '<span>')
+
+  link: ->
+
+    document.execCommand('createLink', false, prompt('Введите URL'))
+
+  save: ($el)->
+
+    type = $el.data('type')
+    if type is 'text'
+      @_saveText($el)
+
+  _trackChanges:
+
+    currentValue: ''
+
+    check: ($el)->
+
+      console.log @currentValue
+
+      if $el.html() isnt @currentValue
+
+        true
+
+      else
+
+        false
+
+  _saveText: ($el)->
+
+    newData = {}
+
+    pageId = Pages.findOne({'name': $el.closest('[data-page]').data('page')})._id
+
+    elemName = $el.attr('id')
+
+    html = $el.html()
+
+    newData[elemName] = html
+
+    console.log pageId
+
+    Pages.update pageId, {$set: newData}, ->
+      console.log 'saved'
+
+}
+

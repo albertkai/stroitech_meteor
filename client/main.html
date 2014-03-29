@@ -4,7 +4,14 @@
 
 <body>
 
+    {{>modal}}
+
+    {{>editor}}
+
+    {{>adminPanel}}
+
     {{>main}}
+
 
 </body>
 
@@ -14,10 +21,14 @@
 
     {{#constant}}
 
-    <section id="top" class="pages">
+    <section id="top" class="pages" data-page="top">
         <img id="logo" src="/img/logo2.png" alt=""/>
 
         <nav id="top-nav">
+            <div class="for-devices visible-sm visible-xs">
+                <h3 data-type="text" contenteditable="true">МосОблСтрой</h3>
+                <button><i class="fa fa-bars"></i></button>
+            </div>
             <ul>
                 <li data-target="about"><a>О КОМПАНИИ</a></li>
                 <li data-target="services"><a>УСЛУГИ</a></li>
@@ -30,119 +41,96 @@
 
     {{/constant}}
 
-
-
-    <section id="about" class="pages">
+    {{#with about}}
+    <section id="about" class="pages" data-page="about">
         <div class="container">
-            <h1>О КОМПАНИИ</h1>
+            <h1 id="about-header" data-type="text" contenteditable="true">{{{about-header}}}</h1>
             <div class="row">
                 <div class="info">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad asperiores aut commodi dolorem explicabo impedit magni odio quibusdam, sint soluta? Eos nisi porro quo repellendus voluptas. Cum error esse facere, magni saepe tempora! Aperiam, aspernatur autem error esse expedita impedit inventore modi numquam possimus suscipit temporibus veniam voluptatibus. Aspernatur, laborum!</p>
+                    <p id="about-text" data-type="text" contenteditable="true">{{{about-text}}}</p>
 
                     <div id="advantages">
-                        <div class="item">
-                            <div></div>
-                            <h3>ЦЕНА</h3>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quaerat rerum
-                                saepe! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, culpa cumque dolorem possimus provident quo reprehenderit similique vel veritatis vero?</p>
+                        <div id="advantage1" class="item" data-type="text" contenteditable="true">
+                            {{{advantage1}}}
                         </div>
-                        <div class="item">
-                            <div></div>
-                            <h3>КАЧЕСТВО</h3>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, molestiae, reiciendis. Est
-                                nemo qui quo quod! Consectetur officia quia repellendus. Lorem ipsum dolor sit amet,
-                                consectetur adipisicing elit. Blanditiis commodi consequatur dolore eum expedita iure
-                                perferendis quasi qui quibusdam sit?</p>
+                        <div id="advantage2" class="item" data-type="text" contenteditable="true">
+                            {{{advantage2}}}
                         </div>
-                        <div class="item">
-                            <div></div>
-                            <h3>ГАРАНТИЯ</h3>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus dolorum harum
-                                nesciunt obcaecati, sit tempore temporibus unde ut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur consequatur corporis cupiditate id mollitia natus quam tempora vel vitae. Adipisci dolorem et libero modi mollitia tenetur!</p>
+                        <div id="advantage3" class="item" data-type="text" contenteditable="true">
+                            {{{advantage3}}}
                         </div>
                     </div>
                 </div>
-                <aside>
+                <aside class="side-info">
                     <div class="row">
-                        <div id="black-circle">
+                        <div id="black-circle" data-animate="0">
                             <img src="/img/circle.png" alt=""/>
-                            <div class="body">
-                                <h3>Лучший выбор!</h3>
-                                <p>Lorem ipsum dolor sit <br/> qamet, consectetur adipisicing <br/> elit. Esse, quas!</p>
+                            <div id="best-choice" class="body" data-type="text" contenteditable="true">
+                                {{{best-choice}}}
                             </div>
                         </div>
-                        <div id="visit">
-                            <img src="/img/house.png" alt=""/>
-                            <h3>Взгляните вживую!</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                        <div id="visit" data-animate="0" data-type="text" contenteditable="true">
+                            {{{visit}}}
                         </div>
                     </div>
                 </aside>
             </div>
         </div>
     </section>
+    {{/with}}
 
-    <section id="services" class="pages">
+
+    {{#with services}}
+    <section id="services" class="pages" data-page="services">
         <div class="container">
-            <h1>УСЛУГИ КОМПАНИИ</h1>
+            <h1 id="services-header" contenteditable="true">{{{services-header}}}</h1>
             <div class="row">
 
-                <div>
-                    <div class="thumbnail">
+                <div class="item">
+                    <div class="thumbnail" data-target="basement" data-animate="0">
                         <div class="img"></div>
-                        <div class="caption">
-                            <h3><span>Строительство</span><br/>ФУНДАМЕНТА</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque illo minima.</p>
-                        </div>
+                        <div id="basement-caption" class="caption" data-type="text" contenteditable="true">{{{basement-caption}}}</div>
                     </div>
                 </div>
 
-                <div>
-                    <div class="thumbnail">
+                <div class="item">
+                    <div class="thumbnail" data-target="walls" data-animate=".3">
                         <div class="img"></div>
-                        <div class="caption">
-                            <h3><span>Перекрытия и</span><br/>СТЕНЫ</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque illo minima.</p>
-                        </div>
+                        <div id="walls-caption" class="caption" data-type="text" contenteditable="true">{{{walls-caption}}}</div>
                     </div>
                 </div>
 
-                <div>
-                    <div class="thumbnail">
+                <div class="item">
+                    <div class="thumbnail" data-target="roof" data-animate=".6">
                         <div class="img"></div>
-                        <div class="caption">
-                            <h3><span>Возведение</span><br/>КРОВЛИ</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque illo minima.</p>
-                        </div>
+                        <div id="roof-caption" class="caption" data-type="text" contenteditable="true">{{{roof-caption}}}</div>
                     </div>
                 </div>
 
-                <div>
-                    <div class="thumbnail">
+                <div class="item">
+                    <div class="thumbnail" data-target="pro" data-animate=".9">
                         <div class="img"></div>
-                        <div class="caption">
-                            <h3><span>Услуги</span><br/>ПРОРАБА</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque illo minima.</p>
-                        </div>
+                        <div id="pro-caption" class="caption" data-type="text" contenteditable="true">{{{pro-caption}}}</div>
                     </div>
                 </div>
 
             </div>
         </div>
     </section>
+    {{/with}}
 
+
+    {{#with objects}}
     <section id="objects" class="pages">
 
         <div class="container">
 
-            <h1>НАШИ ОБЪЕКТЫ</h1>
+            <h1 id="objects-header" contenteditable="true">{{{objects-header}}}</h1>
 
+            {{each ../objectList}}
             <div class="row">
 
-                <div class="item">
+                <div class="item" data-animate="0">
                     <div class="thumbnail">
                         <div class="wrap">
                             <img src="/img/fixture.jpeg" alt=""/>
@@ -172,206 +160,64 @@
                     </div>
                 </div>
 
-                <div class="item">
-                    <div class="thumbnail">
-                        <div class="wrap">
-                            <img src="/img/fixture.jpeg" alt=""/>
-                            <h3>
-                                пос. Дружба
-                                <span><span>Площадь: </span>420м<sup>2</sup></span>
-                                <span><span>Этажей: </span>2</span>
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="expandable">
-                        <div class="container"></div>
-                        <div class="close-it">
-                            &#9650;<br/>
-                            С<br/>
-                            В<br/>
-                            Е<br/>
-                            Р<br/>
-                            Н<br/>
-                            У<br/>
-                            Т<br/>
-                            Ь<br/>
-                        </div>
-                        <div class="shade top"></div>
-                        <div class="shade bottom"></div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                        <div class="wrap">
-                            <img src="/img/fixture.jpeg" alt=""/>
-                            <h3>
-                                пос. Дружба
-                                <span><span>Площадь: </span>420м<sup>2</sup></span>
-                                <span><span>Этажей: </span>2</span>
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="expandable">
-                        <div class="container"></div>
-                        <div class="close-it">
-                            &#9650;<br/>
-                            С<br/>
-                            В<br/>
-                            Е<br/>
-                            Р<br/>
-                            Н<br/>
-                            У<br/>
-                            Т<br/>
-                            Ь<br/>
-                        </div>
-                        <div class="shade top"></div>
-                        <div class="shade bottom"></div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                        <div class="wrap">
-                            <img src="/img/fixture.jpeg" alt=""/>
-                            <h3>
-                                пос. Дружба
-                                <span><span>Площадь: </span>420м<sup>2</sup></span>
-                                <span><span>Этажей: </span>2</span>
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="expandable">
-                        <div class="container"></div>
-                        <div class="close-it">
-                            &#9650;<br/>
-                            С<br/>
-                            В<br/>
-                            Е<br/>
-                            Р<br/>
-                            Н<br/>
-                            У<br/>
-                            Т<br/>
-                            Ь<br/>
-                        </div>
-                        <div class="shade top"></div>
-                        <div class="shade bottom"></div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                        <div class="wrap">
-                            <img src="/img/fixture.jpeg" alt=""/>
-                            <h3>
-                                пос. Дружба
-                                <span><span>Площадь: </span>420м<sup>2</sup></span>
-                                <span><span>Этажей: </span>2</span>
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="expandable">
-                        <div class="container"></div>
-                        <div class="close-it">
-                            &#9650;<br/>
-                            С<br/>
-                            В<br/>
-                            Е<br/>
-                            Р<br/>
-                            Н<br/>
-                            У<br/>
-                            Т<br/>
-                            Ь<br/>
-                        </div>
-                        <div class="shade top"></div>
-                        <div class="shade bottom"></div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail">
-                        <div class="wrap">
-                            <img src="/img/fixture.jpeg" alt=""/>
-                            <h3>
-                                пос. Дружба <br/>
-                                <span><span>Площадь: </span>420м<sup>2</sup></span>
-                                <span><span>Этажей: </span>2</span>
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="expandable">
-                        <div class="container"></div>
-                        <div class="close-it">
-                            &#9650;<br/>
-                            С<br/>
-                            В<br/>
-                            Е<br/>
-                            Р<br/>
-                            Н<br/>
-                            У<br/>
-                            Т<br/>
-                            Ь<br/>
-                        </div>
-                        <div class="shade top"></div>
-                        <div class="shade bottom"></div>
-                    </div>
-                </div>
 
             </div>
+            {{/each}}
+
+            <p id="objects-disclaimer" class="disclaimer" contenteditable="true">{{objects-disclaimer}}</p>
 
         </div>
 
     </section>
+    {{/with}}
 
 
+    {{#with price}}
     <section id="price" class="pages">
 
         <div class="container">
-            <h1 class="white">CТОИМОСТЬ РАБОТ</h1>
+            <h1 id="price-header" class="white" contenteditable="true">{{{price-header}}}</h1>
 
             <div class="row">
                 <div>
-                    <div class="item">
-                        <h3>ФУНДАМЕНТ <span>от <span>15000</span> р/м<sup>2</sup></span></h3>
+                    <p id="price-top-text" contenteditable="true">
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti doloremque ducimus, eaque exercitationem iure maxime odit quae qui, quis quos recusandae rem soluta tempore temporibus velit veniam veritatis. Fugiat?</p>
+                        {{{price-top-text}}}
+
+                    </p>
+                    <div id="price-basement" class="item" data-animate="0" contenteditable="true">
+
+                        {{{price-basement}}}
+
                     </div>
-                    <div class="item">
-                        <h3>СТЕНЫ И ПЕРЕКРЫТИЯ <span>от <span>15000</span> р/м<sup>2</sup></span></h3>
+                    <div id="price-walls" class="item" data-animate=".3" contenteditable="true">
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores blanditiis distinctio eos error explicabo labore magnam, nisi non obcaecati quibusdam reiciendis similique voluptatum.</p>
+                        {{{price-walls}}}
+
                     </div>
-                    <div class="item">
-                        <h3>КРОВЛЯ <span>от <span>15000</span> р/м<sup>2</sup></span></h3>
+                    <div id="price-roof" class="item" data-animate=".6" contenteditable="true">
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet cum eveniet fugit numquam obcaecati qui vero voluptates? Autem commodi distinctio eaque eveniet excepturi necessitatibus nihil, pariatur quasi suscipit.</p>
+                        {{{price-roof}}}
+
+                    </div>
+                    <div id="price-pro" class="item" data-animate=".9" contenteditable="true">
+
+                        {{{price-pro}}}
+
                     </div>
                 </div>
                 <div>
 
-                    <div id="call-us">
+                    <div id="call-us" data-animate=".6" contenteditable="true">
 
-                        <img src="/img/yellow_circle.png" alt=""/>
-
-                        <div class="body">
-
-                            <h3>Звоните нам!</h3>
-
-                            <p>Опишите ваш проект, и<br/>мы сообщим вам<br/>точную стоимость</p>
-
-                        </div>
+                        {{{call-us}}}
 
                     </div>
 
-                    <div id="got-project">
-                        <img src="/img/house_schema.png" alt=""/>
-                        <p>Либо в случае, если у вас имеется готовый проект, можете отправить его на напрямую нашему тех. директору
-                            <a href="">solovix@mail.ru</a>, и в скором времени мы отправим вам точную стоимость</p>
+                    <div id="got-project" data-animate="1" contenteditable="true">
+
+                        {{{got-project}}}
+
                     </div>
 
                 </div>
@@ -379,38 +225,36 @@
         </div>
 
     </section>
+    {{/with}}
 
 
+    {{#with contacts}}
     <section id="contacts" class="pages">
 
         <div class="container">
 
-            <h1>КОНТАКТЫ</h1>
+            <h1 id="contacts-header" contenteditable="true">{{{contacts-header}}}</h1>
 
-            <div class="row">
+            <div class="row" data-animate="0">
                 <div>
                     <div><i class="fa fa-phone"></i></div>
-                    <div>
-                        <h3>Телефон</h3>
-                        <p>+7-903-344-05-01</p>
-                        <p>+7-903-344-05-01</p>
-                        <span>Звоните нам с 10:00 до 20:00 семь дней в неделю</span>
+                    <div id="contacts-phone" contenteditable="true">
+                        {{{contacts-phone}}}
+
                     </div>
                 </div>
                 <div>
                     <div><i class="fa fa-envelope"></i></div>
-                    <div>
-                        <h3>E-mail</h3>
-                        <p>solovik@mail.ru</p>
-                        <span>в случае, если у вас есть готовый проект, отправьте его на этот адрес, и мы назовем вам примерную стоимость</span>
+                    <div id="contacts-email" contenteditable="true">
+                        {{{contacts-email}}}
+
                     </div>
                 </div>
                 <div>
                     <div><i class="fa fa-map-marker"></i></div>
-                    <div>
-                        <h3>Адрес</h3>
-                        <p>Мытищи, ул. Веры Волошиной, 19, офис 320 </p>
-                        <span>мы также можем встретиться в любом удобном вам месте</span>
+                    <div id="contacts-address" contenteditable="true">
+                        {{{contacts-address}}}
+
                     </div>
                 </div>
             </div>
@@ -420,18 +264,18 @@
         {{#constant}}<div id="map"></div>{{/constant}}
 
 
-        <p id="danke">
-            <span>Спасибо за</span>
-            <span>ВНИМАНИЕ</span>
-            <span>Будем рады видеть вас в числе наших клиентов!</span>
+        <p id="danke" contenteditable="true">
+            {{{danke}}}
         </p>
 
     </section>
+    {{/with}}
 
+    {{#with footer}}
     <footer>
-        <div class="container"><p><span>2014 МосСтройПроект</span> Использование материалов сайта без ссылки как минимум некрасиво=)</p></div>
+        <div class="container"><p id="footer-info" contenteditable="true">{{{footer-info}}}</p></div>
     </footer>
-
+    {{/with}}
 
 
 </template>
@@ -562,5 +406,39 @@
 
         <li class="clearfix" style="float: none;"></li>
     </ul>
+
+</template>
+
+
+<template name="modal">
+
+    <section class="r-modal">
+
+        <div class="close-me">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+<polygon fill="#231F20" points="60.167,5.588 58.414,3.832 32,30.244 5.588,3.832 3.833,5.588 30.245,32 3.833,58.412 5.588,60.169
+	32,33.753 58.414,60.169 60.167,58.412 33.755,32 "/>
+</svg>
+        </div>
+
+        <div class="ovrl"></div>
+
+        <div class="container">
+            <h1>СТРОИТЕЛЬСТВО ФУНДАМЕНТА</h1>
+            <div class="row">
+                <div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad commodi dolorum error labore quia, vitae.
+                    </p>
+                </div>
+                <aside>
+                    <h2>от <span>14000</span><i class="fa fa-rouble"></i></h2>
+
+                </aside>
+            </div>
+        </div>
+
+    </section>
 
 </template>
