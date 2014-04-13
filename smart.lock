@@ -5,7 +5,9 @@
       "bootstrap3-less": {},
       "font-awesome": {},
       "stellar": {},
-      "page-js": {}
+      "page-js": {},
+      "roles": {},
+      "moment-with-langs": {}
     },
     "packages": {
       "bootstrap3-less": {
@@ -27,6 +29,16 @@
         "git": "https://github.com/tmeasday/meteor-page-js.git",
         "tag": "v1.3.5",
         "commit": "c652f795a86498aa4609ab637a694710421cb218"
+      },
+      "roles": {
+        "git": "https://github.com/alanning/meteor-roles.git",
+        "tag": "v1.2.8",
+        "commit": "68844ba216c348d332bdb840825850f497f515bb"
+      },
+      "moment-with-langs": {
+        "git": "https://github.com/jeeeyul/meteor-moment-with-langs.git",
+        "tag": "v2.5.1",
+        "commit": "75f725898f6d5c3dddc54f1f619fe3b184f596a2"
       }
     }
   }

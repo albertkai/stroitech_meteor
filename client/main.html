@@ -1,16 +1,71 @@
 <head>
-    <title>МосОблСтрой | Загородное строительство без проблем</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>СКБ-Строй | Загородное строительство без проблем!</title>
 </head>
 
 <body>
 
+<div id="admin-login-modal">
+
+    <div class="body">
+
+        <div class="close"><span class="glyphicon glyphicon-remove-sign"></span></div>
+
+        {{>loginButtons}}
+
+    </div>
+
+</div>
+
+
+<div class="loader">
+    <img class="logo-black" src="/img/logo_black.png" alt=""/><br/><br/><br/><br/>
+    <img class="loader-gif" src="/img/726.GIF" alt=""/>
+</div>
+
+    <div class="wrap" data-collection="pages">
+
     {{>modal}}
 
-    {{>editor}}
-
-    {{>adminPanel}}
+    {{#if isInRole 'admin'}}
+        {{>adminPanel}}
+        {{>editor}}
+    {{/if}}
 
     {{>main}}
+
+    </div>
+
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter21177214 = new Ya.Metrika({id:21177214,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/21177214" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 
 
 </body>
@@ -19,14 +74,13 @@
 <template name="main">
 
 
-    {{#constant}}
-
     <section id="top" class="pages" data-page="top">
+        <div class="container hidden-xs"><p class="phone">+7-903-579-84-36 <br/> +7-962-965-15-01 <br/> <span>Мы ждем вашего звонка!</span></p></div>
         <img id="logo" src="/img/logo2.png" alt=""/>
 
         <nav id="top-nav">
             <div class="for-devices visible-sm visible-xs">
-                <h3 data-type="text" contenteditable="true">МосОблСтрой</h3>
+                <h3 data-type="text" contenteditable="false">СКБ-Строй</h3>
                 <button><i class="fa fa-bars"></i></button>
             </div>
             <ul>
@@ -39,241 +93,51 @@
         </nav>
     </section>
 
-    {{/constant}}
 
-    {{#with about}}
-    <section id="about" class="pages" data-page="about">
-        <div class="container">
-            <h1 id="about-header" data-type="text" contenteditable="true">{{{about-header}}}</h1>
-            <div class="row">
-                <div class="info">
-                    <p id="about-text" data-type="text" contenteditable="true">{{{about-text}}}</p>
-
-                    <div id="advantages">
-                        <div id="advantage1" class="item" data-type="text" contenteditable="true">
-                            {{{advantage1}}}
-                        </div>
-                        <div id="advantage2" class="item" data-type="text" contenteditable="true">
-                            {{{advantage2}}}
-                        </div>
-                        <div id="advantage3" class="item" data-type="text" contenteditable="true">
-                            {{{advantage3}}}
-                        </div>
-                    </div>
-                </div>
-                <aside class="side-info">
-                    <div class="row">
-                        <div id="black-circle" data-animate="0">
-                            <img src="/img/circle.png" alt=""/>
-                            <div id="best-choice" class="body" data-type="text" contenteditable="true">
-                                {{{best-choice}}}
-                            </div>
-                        </div>
-                        <div id="visit" data-animate="0" data-type="text" contenteditable="true">
-                            {{{visit}}}
-                        </div>
-                    </div>
-                </aside>
-            </div>
-        </div>
-    </section>
-    {{/with}}
+    <section id="about" class="pages" data-document="about">
 
 
-    {{#with services}}
-    <section id="services" class="pages" data-page="services">
-        <div class="container">
-            <h1 id="services-header" contenteditable="true">{{{services-header}}}</h1>
-            <div class="row">
-
-                <div class="item">
-                    <div class="thumbnail" data-target="basement" data-animate="0">
-                        <div class="img"></div>
-                        <div id="basement-caption" class="caption" data-type="text" contenteditable="true">{{{basement-caption}}}</div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail" data-target="walls" data-animate=".3">
-                        <div class="img"></div>
-                        <div id="walls-caption" class="caption" data-type="text" contenteditable="true">{{{walls-caption}}}</div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail" data-target="roof" data-animate=".6">
-                        <div class="img"></div>
-                        <div id="roof-caption" class="caption" data-type="text" contenteditable="true">{{{roof-caption}}}</div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="thumbnail" data-target="pro" data-animate=".9">
-                        <div class="img"></div>
-                        <div id="pro-caption" class="caption" data-type="text" contenteditable="true">{{{pro-caption}}}</div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    {{/with}}
+         {{>about}}
 
 
-    {{#with objects}}
-    <section id="objects" class="pages">
-
-        <div class="container">
-
-            <h1 id="objects-header" contenteditable="true">{{{objects-header}}}</h1>
-
-            {{each ../objectList}}
-            <div class="row">
-
-                <div class="item" data-animate="0">
-                    <div class="thumbnail">
-                        <div class="wrap">
-                            <img src="/img/fixture.jpeg" alt=""/>
-                            <h3>
-                                пос. Дружба
-                                <span><span>Площадь: </span>420м<sup>2</sup></span>
-                                <span><span>Этажей: </span>2</span>
-                            </h3>
-                        </div>
-                    </div>
-
-                    <div class="expandable">
-                        <div class="container"></div>
-                        <div class="close-it">
-                            &#9650;<br/>
-                            С<br/>
-                            В<br/>
-                            Е<br/>
-                            Р<br/>
-                            Н<br/>
-                            У<br/>
-                            Т<br/>
-                            Ь<br/>
-                        </div>
-                        <div class="shade top"></div>
-                        <div class="shade bottom"></div>
-                    </div>
-                </div>
-
-
-            </div>
-            {{/each}}
-
-            <p id="objects-disclaimer" class="disclaimer" contenteditable="true">{{objects-disclaimer}}</p>
-
-        </div>
 
     </section>
-    {{/with}}
 
 
-    {{#with price}}
-    <section id="price" class="pages">
+    <section id="services" class="pages" data-document="services">
 
-        <div class="container">
-            <h1 id="price-header" class="white" contenteditable="true">{{{price-header}}}</h1>
 
-            <div class="row">
-                <div>
-                    <p id="price-top-text" contenteditable="true">
+        {{>services}}
 
-                        {{{price-top-text}}}
-
-                    </p>
-                    <div id="price-basement" class="item" data-animate="0" contenteditable="true">
-
-                        {{{price-basement}}}
-
-                    </div>
-                    <div id="price-walls" class="item" data-animate=".3" contenteditable="true">
-
-                        {{{price-walls}}}
-
-                    </div>
-                    <div id="price-roof" class="item" data-animate=".6" contenteditable="true">
-
-                        {{{price-roof}}}
-
-                    </div>
-                    <div id="price-pro" class="item" data-animate=".9" contenteditable="true">
-
-                        {{{price-pro}}}
-
-                    </div>
-                </div>
-                <div>
-
-                    <div id="call-us" data-animate=".6" contenteditable="true">
-
-                        {{{call-us}}}
-
-                    </div>
-
-                    <div id="got-project" data-animate="1" contenteditable="true">
-
-                        {{{got-project}}}
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
     </section>
-    {{/with}}
 
 
-    {{#with contacts}}
-    <section id="contacts" class="pages">
+    <section id="objects" class="pages" data-document="objects">
 
-        <div class="container">
-
-            <h1 id="contacts-header" contenteditable="true">{{{contacts-header}}}</h1>
-
-            <div class="row" data-animate="0">
-                <div>
-                    <div><i class="fa fa-phone"></i></div>
-                    <div id="contacts-phone" contenteditable="true">
-                        {{{contacts-phone}}}
-
-                    </div>
-                </div>
-                <div>
-                    <div><i class="fa fa-envelope"></i></div>
-                    <div id="contacts-email" contenteditable="true">
-                        {{{contacts-email}}}
-
-                    </div>
-                </div>
-                <div>
-                    <div><i class="fa fa-map-marker"></i></div>
-                    <div id="contacts-address" contenteditable="true">
-                        {{{contacts-address}}}
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        {{#constant}}<div id="map"></div>{{/constant}}
-
-
-        <p id="danke" contenteditable="true">
-            {{{danke}}}
-        </p>
+        {{>objects}}
 
     </section>
-    {{/with}}
+
+
+
+    <section id="price" class="pages" data-document="price">
+
+
+        {{>price}}
+
+    </section>
+
+
+    <section id="contacts" class="pages" data-document="contacts">
+
+            {{>contacts}}
+
+    </section>
 
     {{#with footer}}
-    <footer>
-        <div class="container"><p id="footer-info" contenteditable="true">{{{footer-info}}}</p></div>
+    <footer data-document="footer">
+        <div class="container"><p id="footer-info" data-field="footerInfo" contenteditable="false">{{{footerInfo}}}</p></div>
     </footer>
     {{/with}}
 
@@ -281,164 +145,322 @@
 </template>
 
 
-
 <template name="timeline">
 
-    <div id="top-preview">
+    {{#with currentObject}}
+    <div id="top-preview" data-document="{{name}}">
         <div id="slider-cont">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-                </ol>
+            <div id="carousel-{{getId name}}" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="item active">
-                        <img data-src="holder.js/900x500/auto/#777:#555/text:First slide" alt="First slide" src="/img/temp/slider1.jpg">
-                    </div>
+                    {{#each pics}}
                     <div class="item">
-                        <img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="Second slide" src="/img/temp/slider2.jpg">
+                        <img data-src="holder.js/900x500/auto/#777:#555/text:First slide" alt="slide{{index}}" src="http://d2726n0er71me4.cloudfront.net/{{this}}.jpg">
                     </div>
-                    <div class="item">
-                        <img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="Third slide" src="/img/temp/slider1.jpg">
-                    </div>
+                    {{/each}}
                 </div>
-                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                {{#if gotSeveralPics pics}}
+                <a class="left carousel-control" href="#carousel-{{getId name}}" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
-                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <a class="right carousel-control" href="#carousel-{{getId name}}" data-slide="next">
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
+                {{/if}}
             </div>
         </div>
         <div id="info-cont">
             <div class="thumbnail">
-                <h3>пос. Дружба</h3>
-                <h4><span>Площадь:</span> 324м<sup>2</sup></h4>
-                <h4><span>Этажей:</span> 2</h4>
-                <h4><span>Сроки:</span> 4 месяца</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus dicta dignissimos doloremque earum labore laudantium nisi obcaecati optio perferendis quae, quis quo reprehenderit soluta? Aliquam animi autem illo placeat saepe temporibus. Aliquam assumenda atque itaque magni officiis omnis porro voluptatibus.</p>
+                <h3 data-field="name" contenteditable="false">{{name}}</h3>
+                {{#if square}}<h4><span>Площадь:</span> <span data-field="square" contenteditable="false">{{square}}</span>м<sup>2</sup></h4>{{/if}}
+                {{#if floors}}<h4><span>Этажей:</span> <span data-field="floors" contenteditable="false">{{floors}}</span></h4>{{/if}}
+                {{#if time}}<h4><span>Сроки:</span> <span data-field="time" contenteditable="false">{{time}}</span></h4>{{/if}}
+                {{#if status}}<h4><span>Статус:</span> <span data-field="status" contenteditable="false">{{status}}</span></h4>{{/if}}
+                <p data-field="desc" contenteditable="false">{{{desc}}}</p>
             </div>
         </div>
     </div>
 
     <h2><div></div><span>ЭТАПЫ СТРОИТЕЛЬСТВА</span></h2>
     <ul class="timeline">
-        <li>
+        {{#each timeline}}
+        <li data-nested-id="{{id}}">
             <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
             <div class="timeline-panel">
-                <h3 class="timeline-heading">22 мая 2014</h3>
+                <h4 class="timeline-heading" data-field="$.timeline.date" contenteditable="false">{{date}}</h4>
+                <h3 class="timeline-heading" data-field="$.timeline.title" contenteditable="false">{{title}}</h3>
                 <div class="timeline-body">
-                    <div class="img">
-                        <img src="/img/temp/tl1.jpg" alt=""/>
-                        <h4>Закладка фундамента</h4>
+                    {{#if pics}}
+                    <div id="carousel-{{getId title}}" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {{#each pics}}
+                            <div class="item">
+                                <img data-src="holder.js/900x500/auto/#777:#555/text:First slide" alt="slide{{index}}" src="http://d2726n0er71me4.cloudfront.net/{{this}}.jpg">
+                            </div>
+                            {{/each}}
+                        </div>
+                        {{#if gotSeveralPics pics}}
+                        <a class="left carousel-control" href="#carousel-{{getId title}}" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-{{getId title}}" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                        {{/if}}
                     </div>
+                    {{/if}}
 
-                    <p>Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+                    <p contenteditable="false" data-field="$.timeline.desc">{{desc}}</p>
 
                 </div>
 
                 <div class="timeline-footer">
-                    <h4>Cроки: 2 недели</h4>
+                    <h4>Cроки: <span data-field="$.timeline.time" contenteditable="false">{{time}}</span></h4>
                 </div>
             </div>
         </li>
-
-        <li  class="timeline-inverted">
-            <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
-            <div class="timeline-panel">
-                <h3 class="timeline-heading">2 июня 2014</h3>
-                <div class="timeline-body">
-                    <div class="img">
-                        <img src="/img/temp/tl1.jpg" alt=""/>
-                        <h4>Строительство стен</h4>
-                    </div>
-
-                    <p>Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-                </div>
-
-                <div class="timeline-footer">
-                    <h4>Cроки: 2 недели</h4>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
-            <div class="timeline-panel">
-                <h3 class="timeline-heading">30 июня 2014</h3>
-                <div class="timeline-body">
-                    <div class="img">
-                        <img src="/img/temp/tl1.jpg" alt=""/>
-                        <h4>Стройка стен</h4>
-                    </div>
-
-                    <p>Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-                </div>
-
-                <div class="timeline-footer">
-                    <h4>Cроки: 2 недели</h4>
-                </div>
-            </div>
-        </li>
-
-        <li  class="timeline-inverted">
-            <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
-            <div class="timeline-panel">
-                <h3 class="timeline-heading">12 июля 2014</h3>
-                <div class="timeline-body">
-                    <div class="img">
-                        <img src="/img/temp/tl1.jpg" alt=""/>
-                        <h4>Завершение</h4>
-                    </div>
-
-                    <p>Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-
-                </div>
-
-                <div class="timeline-footer">
-                    <h4>Cроки: 2 недели</h4>
-                </div>
-            </div>
-        </li>
-
+        {{/each}}
         <li class="clearfix" style="float: none;"></li>
     </ul>
+    {{/with}}
 
 </template>
 
 
-<template name="modal">
 
-    <section class="r-modal">
+<template name="about">
 
-        <div class="close-me">
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-<polygon fill="#231F20" points="60.167,5.588 58.414,3.832 32,30.244 5.588,3.832 3.833,5.588 30.245,32 3.833,58.412 5.588,60.169
-	32,33.753 58.414,60.169 60.167,58.412 33.755,32 "/>
-</svg>
+    {{#with about}}
+
+    <div class="container">
+        <h1 contenteditable="false" data-field="aboutHeader" >{{{aboutHeader}}}</h1>
+        <div class="row">
+            <div class="info">
+                <p id="about-text" contenteditable="false" data-field="aboutText">{{{aboutText}}}</p>
+
+                <div id="advantages">
+                    <div id="advantage1" class="item" data-field="advantage1" contenteditable="false">
+                        {{{advantage1}}}
+                    </div>
+                    <div id="advantage2" class="item" data-field="advantage2" contenteditable="false">
+                        {{{advantage2}}}
+                    </div>
+                    <div id="advantage3" class="item" data-field="advantage3" contenteditable="false">
+                        {{{advantage3}}}
+                    </div>
+                </div>
+            </div>
+            <aside class="side-info">
+                <div class="row">
+                    <div id="black-circle" data-animate="0">
+                        <img src="/img/circle.png" alt=""/>
+                        <div id="best-choice" class="body" data-field="bestChoice" contenteditable="false">
+                            {{{bestChoice}}}
+                        </div>
+                    </div>
+                    <div id="visit" data-animate="0" data-field="visit" contenteditable="false">
+                        {{{visit}}}
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    {{/with}}
+
+</template>
+
+<template name="services">
+
+    {{#with services}}
+    <div class="container">
+        <h1 id="services-header" data-field="servicesHeader" contenteditable="false">{{{servicesHeader}}}</h1>
+        <div class="row">
+
+            <div class="item">
+                <div class="thumbnail" data-target="base" data-animate="0">
+                    <div class="img"></div>
+                    <div id="basement-caption" class="caption" data-field="basementCaption" contenteditable="false">{{{basementCaption}}}</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="thumbnail" data-target="walls" data-animate=".3">
+                    <div class="img"></div>
+                    <div id="walls-caption" class="caption" data-field="wallsCaption" contenteditable="false">{{{wallsCaption}}}</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="thumbnail" data-target="roof" data-animate=".6">
+                    <div class="img"></div>
+                    <div id="roof-caption" class="caption"  data-field="roofCaption" contenteditable="false">{{{roofCaption}}}</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="thumbnail" data-target="pro" data-animate=".9">
+                    <div class="img"></div>
+                    <div id="pro-caption" class="caption" data-field="proCaption" contenteditable="false">{{{proCaption}}}</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {{/with}}
+</template>
+
+<template name="objects">
+
+    <div class="container" data-collection="objects">
+
+        <h1 id="objects-header">{{{objects.objectsHeader}}}</h1>
+
+        <p>{{{objects.objectsDesc}}}</p>
+
+        <div class="row" data-collection="objects">
+
+            {{#each objectList}}
+
+            <div class="item" data-animate="{{getAnim}}" data-id="{{_id}}" data-document="{{name}}">
+                <div class="thumbnail">
+                    <div class="wrap">
+                        <img src="http://d2726n0er71me4.cloudfront.net/{{thumb}}.jpg" alt="{{name}}"/>
+                        <h3>
+                            {{name}}
+                            {{#if square}}<span><span>Площадь: </span>{{square}}м<sup>2</sup></span>{{/if}}
+                            {{#if floors}}<span><span>Этажей: </span>{{floors}}</span>{{/if}}
+                            {{#if status}}<span><span>Статус: </span>{{status}}</span>{{/if}}
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div id="testing" class="container"></div>
+                    <div class="close-it">
+                        &#9650;<br/>
+                        С<br/>
+                        В<br/>
+                        Е<br/>
+                        Р<br/>
+                        Н<br/>
+                        У<br/>
+                        Т<br/>
+                        Ь<br/>
+                    </div>
+                    <div class="shade top"></div>
+                    <div class="shade bottom"></div>
+                </div>
+            </div>
+
+            {{/each}}
+
         </div>
 
-        <div class="ovrl"></div>
+        <p data-field="objectsDisclaimer" class="disclaimer" contenteditable="false">{{objects.objectsDisclaimer}}</p>
 
-        <div class="container">
-            <h1>СТРОИТЕЛЬСТВО ФУНДАМЕНТА</h1>
-            <div class="row">
-                <div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad commodi dolorum error labore quia, vitae.
-                    </p>
+    </div>
+
+</template>
+
+<template name="price">
+
+    {{#with price}}
+
+    <div class="container">
+        <h1 id="price-header" data-field="priceHeader" class="white" contenteditable="false">{{{priceHeader}}}</h1>
+
+        <div class="row">
+            <div>
+                <p id="price-top-text" data-field="priceTopText" contenteditable="false">
+
+                    {{{priceTopText}}}
+
+                </p>
+                <div id="price-basement" data-field="priceBasement" class="item" data-animate="0" contenteditable="false">
+
+                    {{{priceBasement}}}
+
                 </div>
-                <aside>
-                    <h2>от <span>14000</span><i class="fa fa-rouble"></i></h2>
+                <div id="price-walls" data-field="priceWalls" class="item" data-animate=".3" contenteditable="false">
 
-                </aside>
+                    {{{priceWalls}}}
+
+                </div>
+                <div id="price-roof" data-field="priceRoof" class="item" data-animate=".6" contenteditable="false">
+
+                    {{{priceRoof}}}
+
+                </div>
+                <div id="price-pro" data-field="pricePro" class="item" data-animate=".9" contenteditable="false">
+
+                    {{{pricePro}}}
+
+                </div>
+            </div>
+            <div>
+
+                <div id="call-us" data-field="callUs" data-animate=".6" contenteditable="false">
+
+                    {{{callUs}}}
+
+                </div>
+
+                <div id="got-project" data-field="gotProject" data-animate="1" contenteditable="false">
+
+                    {{{gotProject}}}
+
+                </div>
+
             </div>
         </div>
+    </div>
 
-    </section>
+    {{/with}}
+
+</template>
+
+
+<template name="contacts">
+
+    {{#with contacts}}
+
+    <div class="container">
+
+        <h1 id="contacts-header" data-field="contactsHeader" contenteditable="false">{{{contactsHeader}}}</h1>
+
+        <div class="row" data-animate="0">
+            <div>
+                <div><i class="fa fa-phone"></i></div>
+                <div id="contacts-phone" data-field="contactsPhone" contenteditable="false">
+                    {{{contactsPhone}}}
+
+                </div>
+            </div>
+            <div>
+                <div><i class="fa fa-envelope"></i></div>
+                <div id="contacts-email" data-field="contactsEmail" contenteditable="false">
+                    {{{contactsEmail}}}
+
+                </div>
+            </div>
+            <div>
+                <div><i class="fa fa-map-marker"></i></div>
+                <div id="contacts-address" data-field="contactsAddress" contenteditable="false">
+                    {{{contactsAddress}}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="map"></div>
+
+
+    <p id="danke" data-field="danke" contenteditable="false">
+        {{{danke}}}
+    </p>
+
+    {{/with}}
 
 </template>

@@ -11,6 +11,49 @@
   box-shadow: 0 0 3px #999;
   .transition(all .4s ease);
   z-index: @editor-zindex;
+  .html-cont{
+    position: absolute;
+    left: 88px;
+    top: 30px;
+    background: rgba(0, 0, 0, .8);
+    height: 236px;
+    width: 300px;
+    padding: 4px;
+    border-radius: 3px;
+    border: 2px solid white;
+    .transition(.4s);
+    visibility: hidden;
+    -webkit-animation-duration: .7s;
+    -moz-animation-duration: .7s;
+    -o-animation-duration: .7s;
+    animation-duration: .7s;
+    textarea{
+      width: 100%;
+      height: 190px;
+      resize: none;
+      border: 0;
+      -webkit-box-shadow: inset 0 0 3px #ccc;
+      -moz-box-shadow: inset 0 0 3px #ccc;
+      box-shadow: inset 0 0 3px #ccc;
+    }
+    button{
+      height: 26px;
+      line-height: 19px;
+      margin: 4px;
+      float: right;
+      border-color: white;
+      color: white;
+      background: #000;
+    }
+    >div{
+      position: absolute;
+      top: 19px;
+      left: -12px;
+      border-right: 12px solid white;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+    }
+  }
   .b-group{
     height: 50px;
     margin: 10px;

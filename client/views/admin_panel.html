@@ -1,13 +1,16 @@
 <template name="adminPanel">
     <div class="admin-panel">
 
-        <div id="toggle-admin-panel">+</div>
+        <div id="toggle-admin-panel">
+
+        </div>
+        <div class="wrap">
         <div class="header">
 
             <div class="user-pic"></div>
 
-            <h3>Альберт</h3>
-            <h2>Кайгородов</h2>
+            <h3>{{currentUser.profile.name}}</h3>
+            <h2>{{currentUser.profile.surname}}</h2>
 
             <a id="open-dashboard" href="{{pathFor 'dashboard'}}">Открыть дэшборд</a>
             <hr/>
@@ -21,6 +24,18 @@
             <a cass="togge-collection-modal" data-collection="Trainers">Тренеры</a>
             <hr/>
             <a class="toggle-page" data-page="Course">Создать курс</a>
+            <hr/>
+            <div id="history-cont">
+                <ul>
+                    {{#each history}}
+                    <li data-id="{{_id}}" data-selector-path="{{selectorPath}}" class="{{#if rolledBack}}rolled-back{{/if}}">
+                        <h5>{{getDate date}}</h5>
+                        <p>{{collection}}>{{document}}>{{field}}</p>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
         </div>
 
 

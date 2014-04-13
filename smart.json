@@ -3,6 +3,8 @@
     "bootstrap3-less": {},
     "font-awesome": {},
     "stellar": {},
-    "page-js": {}
+    "page-js": {},
+    "roles": {},
+    "moment-with-langs": {}
   }
 }

@@ -1,0 +1,60 @@
+<template name="modal">
+
+    <section class="r-modal">
+
+        <div class="close-me">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+<polygon fill="#231F20" points="60.167,5.588 58.414,3.832 32,30.244 5.588,3.832 3.833,5.588 30.245,32 3.833,58.412 5.588,60.169
+	32,33.753 58.414,60.169 60.167,58.412 33.755,32 "/>
+</svg>
+        </div>
+
+        <div class="ovrl"></div>
+
+        <div class="container">
+
+        </div>
+
+    </section>
+
+</template>
+
+
+<template name="modalContent">
+    <div class="wrap" data-collection="pages" data-document="{{name}}">
+    <h1 data-field="header" contenteditable="false">{{{header}}}</h1>
+    <div class="row">
+        <div>
+            <p data-field="desc" contenteditable="false">{{{desc}}}</p>
+            {{#if types}}
+            <ul>
+                {{#each types}}
+                <li data-field="$.types.markup" data-nested-id={{id}} contenteditable="false">
+                    {{{markup}}}
+                </li>
+                {{/each}}
+
+            </ul>
+            {{/if}}
+            {{#if desc2}}
+            <p data-field="desc2" contenteditable="false">{{{desc2}}}</p>
+            {{/if}}
+            <h4 data-field="principlesHeader" contenteditable="false">{{principlesHeader}}</h4>
+            <ol data-field="principles" contenteditable="false">
+                {{{principles}}}
+            </ol>
+            <div class="jumbotron">
+                <p data-field="jumbotron" contenteditable="false">{{{jumbotron}}}</p>
+            </div>
+        </div>
+        <aside>
+            <div class="price" data-field="price" contenteditable="false">
+                <img src="/img/yellow_circle.png" alt=""/>
+                {{{price}}}
+            </div>
+        </aside>
+    </div>
+    </div>
+</template>
+

@@ -4,15 +4,16 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-autopublish
-insecure
-preserve-inputs
 coffeescript
 underscore
 backbone
 bootstrap3-less
 font-awesome
 stellar
-jquery-waypoints
 less
 page-js
+spiderable
+accounts-ui
+roles
+accounts-password
+moment-with-langs
